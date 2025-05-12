@@ -1,0 +1,23 @@
+
+1. Find all products with a rating below 4.5 that have more than 200 reviews and
+are offered by the brand 'Nike' or 'Sony'.
+
+db.products.find({ "Rating": { "$lt": 4.5 }, 
+                   "ReviewCount": { "$gt": 200 },
+                   "$or": [ { "Brand": "Nike" }, { "Brand": "Sony" } ] })
+
+2.Which products in the Electronics category have a rating of 4.5 or higher and are in  stock?
+db.products.find({ "Category":"Electronics", "Rating": { "$gte":4.5 }, "Stock":1 })
+
+3.Which products in the Electronics category have a rating of 4.5 or higher and have
+ stock more than 3?
+
+db.electronics.find({ "Category": "Electronics", "Rating": { "$gte": 4.5 }, "Stock": { "$gt": 3 } })
+
+4.What are the products with a price greater than $50?
+db.products.find({ "Price": { "$gt": 50 } })
+
+5.List products launched after January 1, 2022, in the Home & Kitchen or Sports
+categories with a discount of 10% or more, sorted by price in descending order.
+
+db.collection.find({ "LaunchDate": { "$gt": "2022-01-01" }, "Category": { "$in": ["Home & Kitchen", "Sports"] }, "Discount": { "$gte": 10 } })
